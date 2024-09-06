@@ -4,7 +4,7 @@ import sqlite3
 db = sqlite3.connect('db/JupilerProLeague.db')
 
 def read_csv(file_path:str='db/dataset.csv'): 
-    df = pd.read_csv(file_path)
+    df = pd.read_csv(file_path).sort_values('Date')
     matches = df[['Date','HomeTeam','AwayTeam']]
     matches.columns = ['date','home','away']
     stats = df[['FTHG','FTAG','FTR','HS','AS','HST','AST','HF','AF','HC','AC','HY','AY','HR','AR']]
