@@ -1,7 +1,7 @@
 from airflow.models import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.utils.dates import days_ago
-from csv_scraper import release_the_spider
+from ..csv_scraper import release_the_spider
 
 args = {
     'owner' : 'AlperC',
