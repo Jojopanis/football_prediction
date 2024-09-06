@@ -14,7 +14,9 @@ class SoccerSpider(scrapy.Spider):
         with open(csv_file, 'wb') as file:
             file.write( response.body )
 
+def release_the_spider():
+    process = CrawlerProcess()
+    process.crawl(SoccerSpider)
+    process.start()
 
-process = CrawlerProcess()
-process.crawl(SoccerSpider)
-process.start()
+release_the_spider()
