@@ -9,7 +9,7 @@ from sklearn.preprocessing import OneHotEncoder
 
 # Load data 
 
-df = pd.read_csv('dataset.csv')
+df = pd.read_csv('db/dataset.csv')
 df = df[['Date' , 'HomeTeam','AwayTeam','FTHG','FTAG','FTR','HTHG','HTAG','HTR','HS','AS','HST','AST','HF','AF','HC','AC','HY','AY','HR','AR']]
 df= pd.get_dummies(df, columns=['FTR','HTR'])
 matches = df.groupby(['HomeTeam','AwayTeam'])[['FTR_A','FTR_D','FTR_H','HTR_A','HTR_D','HTR_H']].sum().reset_index()
