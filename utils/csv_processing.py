@@ -1,21 +1,27 @@
 import pandas as pd
 import sqlite3
+import datetime
 
-db = sqlite3.connect('db/JupilerProLeague.db')
+db = sqlite3.connect('data/JupilerProLeague.db')
 
-def read_csv(file_path:str='db/dataset.csv'): 
-    df = pd.read_csv(file_path).sort_values('Date')
+def get_csv(file_path:str): 
+    df = pd.read_csv(file_path)
+    df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y').dt.date
+    df.sort_values(by='Date', inplace=True)
+    return df
+    
+def split_csv(df:pd.DataFrame):
     matches = df[['Date','HomeTeam','AwayTeam']]
     matches.columns = ['date','home','away']
     stats = df[['FTHG','FTAG','FTR','HS','AS','HST','AST','HF','AF','HC','AC','HY','AY','HR','AR']]
     stats.columns = ['full_time_home_goals','full_time_away_goals','full_time_result','home_shots','away_shots','home_shots_target','away_shots_target','home_fouls','away_fouls','home_corners','away_corners','home_yellow','away_yellow','home_red','away_red']
     return matches, stats
 
-def create_tables():
+def create_tables(db:sqlite3.Connection):
     sql_statements = [
         '''CREATE TABLE IF NOT EXISTS matches (
                 id INTEGER PRIMARY KEY,
-                date TEXT NOT NULL,
+                date DATE NOT NULL,
                 home TEXT NOT NULL,
                 away TEXT NOT NULL
         )''',
@@ -72,7 +78,22 @@ def populate_tables(matches:pd.DataFrame, stats:pd.DataFrame):
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', 
         stats.values.tolist())
 
+def prune_csv(df:pd.DataFrame):
+    with db as conn:
+        cursor = conn.cursor()
+        cursor.execute('SELECT date FROM matches ORDER BY date DESC LIMIT 1')
+        last_weekend = cursor.fetchone()
+    if last_weekend is not None:
+        df = df[df['Date'] > datetime.datetime.strptime(last_weekend[0], "%Y-%m-%d").date()]
+    return df
+
+def process_csv(file_path:str):
+    df = get_csv(file_path)
+    df = prune_csv(df)
+    matches, stats = split_csv(df)
+    return matches, stats
+
 if __name__ == '__main__':
-    matches, stats = read_csv()
     create_tables()
+    matches, stats = process_csv('data/B1.csv')
     populate_tables(matches, stats)
