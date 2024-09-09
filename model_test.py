@@ -97,7 +97,7 @@ def model_training_with_manual_params(final_data, params):
     best_random_state = 0  # Placeholder for the best random state
     
     # Loop through different random states to find the best one
-    for i in range(1, 150):
+    for i in range(1, 1000):
         # Split the data into train and test sets with random state i
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=i)
         
@@ -144,7 +144,7 @@ manual_params = {
     'C': 1,  # Regularization strength
     'solver': 'liblinear',  # Solver to use
     'penalty': 'l2',  # Penalty type
-    'max_iter': 500  # Number of iterations
+    'max_iter': 1000,
 }
 
 # Train the model with manually selected parameters

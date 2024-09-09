@@ -93,7 +93,7 @@ def model_training_with_manual_params(final_data, params):
     y = final_data[columns_to_predict]
     
     # Split the data into train and test sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=3)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=332)
     
     # Apply StandardScaler to scale the data
     scaler = StandardScaler()
