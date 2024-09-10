@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import pandas as pd
 import requests
+import sqlite3
+from csv_processing import populate_tables, get_csv
 
 url = "https://www.walfoot.be/belgique/jupiler-pro-league/calendrier"
 
@@ -44,10 +46,16 @@ def change_team_names(name:str):
     for key, value in names_dict.items():
         if key in name:
             return value
+        
 df['home'] = df['home'].apply(change_team_names)
 df['away'] = df['away'].apply(change_team_names)
 
 df.drop(df[df['score'].str[0] != "."].index,inplace=True)
 df.drop('score', axis = 1, inplace = True)
+df.columns = ['Date','HomeTeam','AwayTeam']
 
 df.to_csv("data/future_matches.csv",index=False)
+
+matches = get_csv("data/future_matches.csv")
+db = sqlite3.connect('data/JupilerProLeague.db')
+populate_tables(matches)

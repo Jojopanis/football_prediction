@@ -52,7 +52,7 @@ def create_tables(db:sqlite3.Connection):
             cursor.execute(sql)
         conn.commit()
 
-def populate_tables(matches:pd.DataFrame, stats:pd.DataFrame):
+def populate_tables(matches:pd.DataFrame, stats:pd.DataFrame=None):
 
     with db as conn:
         cursor = conn.cursor()
@@ -63,20 +63,21 @@ def populate_tables(matches:pd.DataFrame, stats:pd.DataFrame):
         matches.values.tolist())
         
         cursor.execute('SELECT last_insert_rowid()')
-        last_id = cursor.fetchone()[0]
-        
-        match_ids = list(range(last_id - len(matches) + 1, last_id + 1))
 
-        stats['match_id'] = match_ids
-        stats = stats[['match_id','full_time_home_goals','full_time_away_goals','full_time_result','home_shots','away_shots','home_shots_target','away_shots_target','home_fouls','away_fouls','home_corners','away_corners','home_yellow','away_yellow','home_red','away_red']]
+        if stats is not None:
+            last_id = cursor.fetchone()[0]
+            match_ids = list(range(last_id - len(matches) + 1, last_id + 1))
 
-        cursor.executemany('''
-        INSERT INTO stats (match_id, full_time_home_goals, full_time_away_goals, full_time_result, 
-                            home_shots, away_shots, home_shots_target, away_shots_target,
-                            home_fouls, away_fouls, home_corners, away_corners,
-                            home_yellow, away_yellow, home_red, away_red)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', 
-        stats.values.tolist())
+            stats['match_id'] = match_ids
+            stats = stats[['match_id','full_time_home_goals','full_time_away_goals','full_time_result','home_shots','away_shots','home_shots_target','away_shots_target','home_fouls','away_fouls','home_corners','away_corners','home_yellow','away_yellow','home_red','away_red']]
+
+            cursor.executemany('''
+            INSERT INTO stats (match_id, full_time_home_goals, full_time_away_goals, full_time_result, 
+                                home_shots, away_shots, home_shots_target, away_shots_target,
+                                home_fouls, away_fouls, home_corners, away_corners,
+                                home_yellow, away_yellow, home_red, away_red)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''', 
+            stats.values.tolist())
 
 def prune_csv(df:pd.DataFrame):
     with db as conn:
