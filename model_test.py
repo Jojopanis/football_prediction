@@ -7,6 +7,7 @@ from sklearn.multioutput import MultiOutputClassifier
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
+import pickle
 
 def load_df():
     last_season = pd.read_csv('data/B12324.csv')
@@ -83,19 +84,19 @@ def merging_stats_to_match(team_home_stats, team_away_stats, match_data):
     final_data = final_data.sort_values('Date',ascending=False)
     final_data = pd.get_dummies(final_data, columns=['FTR'])
     final_data = final_data.dropna()
+    final_data['Outcome'] = final_data[['FTR_D', 'FTR_H', 'FTR_A']].idxmax(axis=1)
+    final_data = final_data.drop(columns=['FTR_D', 'FTR_H', 'FTR_A'])
+    final_data.to_csv('data/final_data.csv', index=False)
     return final_data
 
 def get_team_stats(team_home_stats, team_away_stats):
-    team_home_stats.rename(columns={'HomeTeam': 'Team'}, inplace=True)
-    team_away_stats.rename(columns={'AwayTeam': 'Team'}, inplace=True)
-    team_stats = pd.merge(team_home_stats, team_away_stats, on='Team', how='outer')
-    team_stats = team_stats.dropna()
-    team_stats.to_csv('data/team_home_stats.csv', index=False)
-
-
+    team_away_stats = team_away_stats.reset_index()
+    team_home_stats = team_home_stats.reset_index()
+    team_away_stats.to_csv('data/team_away_stats.csv', index=False)
+    team_home_stats.to_csv('data/team_home_stats.csv', index=False)
 # Function to train the model with manual parameters
 def model_training_with_manual_params(final_data, params):
-    columns_to_predict = ['FTR_A', 'FTR_D', 'FTR_H']
+    columns_to_predict = ['Outcome']
     
     # OneHotEncode HomeTeam and AwayTeam
     ohe = OneHotEncoder(handle_unknown='ignore', sparse_output=False).set_output(transform="pandas")
@@ -105,21 +106,18 @@ def model_training_with_manual_params(final_data, params):
     X = final_data.drop(['Date'] + columns_to_predict, axis=1)
     y = final_data[columns_to_predict]
     
-    best_accuracy = 0  # Initialize the best accuracy score
-    best_model = None   # Placeholder for the best model
-    best_random_state = 0  # Placeholder for the best random state
+    # Initialize variables to track the best and worst accuracy
+    best_accuracy = 0
+    worst_accuracy = 1
+    best_random_state = None
+    worst_random_state = None
     
-    # Loop through different random states to find the best one
-    for i in range(1, 1500):
-        # Split the data into train and test sets with random state i
+    # Split the data into train and test sets
+    for i in range(1, 1000):
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=i)
-        
-        # Apply StandardScaler to scale the data
-        scaler = StandardScaler()
-        X_train = scaler.fit_transform(X_train)
-        X_test = scaler.transform(X_test)
-        
+    
         # Initialize the LogisticRegression model with user-defined parameters
+        params['random_state'] = 1
         model = MultiOutputClassifier(LogisticRegression(**params))
         
         # Fit the model to the training data
@@ -127,38 +125,47 @@ def model_training_with_manual_params(final_data, params):
         
         # Make predictions on the test set
         y_pred = model.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
         
-        # Calculate accuracy by comparing the predicted and true values
-        y_pred_class = np.argmax(y_pred, axis=1)
-        y_test_class = np.argmax(y_test.values, axis=1)
-        accuracy = accuracy_score(y_test_class, y_pred_class)
-        
-        # Check if this is the best accuracy so far
+        # Update the best accuracy and corresponding random state
         if accuracy > best_accuracy:
             best_accuracy = accuracy
-            best_model = model
-            best_random_state = i  # Update the best random state
+            best_random_state = i
+        
+        # Update the worst accuracy and corresponding random state
+        if accuracy < worst_accuracy:
+            worst_accuracy = accuracy
+            worst_random_state = i
         
         print(f"Random State: {i}, Accuracy: {accuracy}")
     
     print(f"\nBest Random State: {best_random_state}, Best Accuracy: {best_accuracy}")
+    print(f"Worst Random State: {worst_random_state}, Worst Accuracy: {worst_accuracy}")
     
-    return best_accuracy, best_model, best_random_state
+    return best_accuracy
+
+# Now call the function as before
+accuracy = model_training_with_manual_params(final_data, manual_params)
+
 
 # Example usage of the function
-matches = load_df()
-team_home_stats = get_10_5_3_home_last_matches(matches)
-team_away_stats = get_10_5_3_away_last_matches(matches)
-match_data = getting_matches_data()
-final_data = merging_stats_to_match(team_home_stats, team_away_stats, match_data)
+matches = load_df()  # Load match data
+team_home_stats = get_10_5_3_home_last_matches(matches)  # Get home stats
+team_away_stats = get_10_5_3_away_last_matches(matches)  # Get away stats
+team_stats = get_team_stats(team_home_stats, team_away_stats)  # Get team stats (if needed)
+match_data = getting_matches_data()  # Get match data
+final_data = merging_stats_to_match(team_home_stats, team_away_stats, match_data)  # Merge stats into match data
+
+# Now `final_data` is properly initialized, and we can proceed with training the model
 
 # Define manual parameters
 manual_params = {
     'C': 1,  # Regularization strength
     'solver': 'liblinear',  # Solver to use
     'penalty': 'l2',  # Penalty type
-    'max_iter': 1000,
+    'max_iter': 500  # Number of iterations
 }
 
 # Train the model with manually selected parameters
 accuracy = model_training_with_manual_params(final_data, manual_params)
+

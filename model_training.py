@@ -86,6 +86,7 @@ def merging_stats_to_match(team_home_stats, team_away_stats, match_data):
     final_data = final_data.dropna()
     final_data['Outcome'] = final_data[['FTR_D', 'FTR_H', 'FTR_A']].idxmax(axis=1)
     final_data = final_data.drop(columns=['FTR_D', 'FTR_H', 'FTR_A'])
+    final_data = final_data.drop_duplicates()
     final_data.to_csv('data/final_data.csv', index=False)
     return final_data
 
@@ -102,38 +103,38 @@ def model_training_with_manual_params(final_data, params):
     ohe = OneHotEncoder(handle_unknown='ignore', sparse_output=False).set_output(transform="pandas")
     ohetransform = ohe.fit_transform(final_data[['HomeTeam', 'AwayTeam']])
     final_data = pd.concat([final_data, ohetransform], axis=1).drop(columns=['HomeTeam', 'AwayTeam'])
-    with open ('utils/ohe.pkl', 'wb') as f:
+    with open('utils/ohe.pkl', 'wb') as f:
         pickle.dump(ohe, f)
-    
     X = final_data.drop(['Date'] + columns_to_predict, axis=1)
     y = final_data[columns_to_predict]
     
     # Split the data into train and test sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=233)
-    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5698)
   
     # Initialize the LogisticRegression model with user-defined parameters
     params['random_state'] = 1
     model = MultiOutputClassifier(LogisticRegression(**params))
     
-    print(X)
-    print(y)
     # Fit the model to the training data
     model.fit(X_train, y_train)
-    with open ('utils/model.pkl', 'wb') as f:
+    with open('utils/model.pkl', 'wb') as f:
         pickle.dump(model, f)
-    
     # Make predictions on the test set
     y_pred = model.predict(X_test)
-    proba = model.predict_proba(X_test)
+    
+    # Get the probability predictions for each target output
+    proba = model.predict_proba(X_test)  # This will be a list of arrays for each output
     
 
+    proba = proba[0]  # Only use the first element since you're predicting 'Outcome'
+    
     accuracy = accuracy_score(y_test, y_pred)
     
     print("Accuracy Score with Manual Parameters:", accuracy)
-    print(proba)
+    print(proba)  # Now this will print a 2D array instead of a 3D one
     
     return accuracy
+
 
 # Example usage of the function
 matches = load_df()
