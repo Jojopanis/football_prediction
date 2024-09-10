@@ -9,8 +9,13 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 
 def load_df():
-    df = pd.read_csv('data/dataset.csv')
-    matches = df[['Date','HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'HTHG', 'HTAG', 'HS', 'AS', 'HST', 'AST', 'HF', 'AF', 'HC', 'AC', 'HY', 'AY', 'HR', 'AR']]
+    last_season = pd.read_csv('data/B12324.csv')
+    new_season = pd.read_csv('data/B12425.csv')
+    df = pd.concat([last_season, new_season], axis=0)
+    df.drop_duplicates(inplace=True)
+    df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y').dt.date
+    df.sort_values('Date', ascending=False, inplace=True)
+    matches = df[['Date','HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR']]
     matches = matches.dropna()
     matches = pd.get_dummies(matches, columns=['FTR'])
     return matches
@@ -80,6 +85,14 @@ def merging_stats_to_match(team_home_stats, team_away_stats, match_data):
     final_data = final_data.dropna()
     return final_data
 
+def get_team_stats(team_home_stats, team_away_stats):
+    team_home_stats.rename(columns={'HomeTeam': 'Team'}, inplace=True)
+    team_away_stats.rename(columns={'AwayTeam': 'Team'}, inplace=True)
+    team_stats = pd.merge(team_home_stats, team_away_stats, on='Team', how='outer')
+    team_stats = team_stats.dropna()
+    team_stats.to_csv('data/team_home_stats.csv', index=False)
+
+
 # Function to train the model with manual parameters
 def model_training_with_manual_params(final_data, params):
     columns_to_predict = ['FTR_A', 'FTR_D', 'FTR_H']
@@ -97,7 +110,7 @@ def model_training_with_manual_params(final_data, params):
     best_random_state = 0  # Placeholder for the best random state
     
     # Loop through different random states to find the best one
-    for i in range(1, 1000):
+    for i in range(1, 1500):
         # Split the data into train and test sets with random state i
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=i)
         

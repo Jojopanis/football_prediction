@@ -7,10 +7,16 @@ from sklearn.multioutput import MultiOutputClassifier
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
+import pickle
 
 def load_df():
-    df = pd.read_csv('data/dataset.csv')
-    matches = df[['Date','HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'HTHG', 'HTAG', 'HS', 'AS', 'HST', 'AST', 'HF', 'AF', 'HC', 'AC', 'HY', 'AY', 'HR', 'AR']]
+    last_season = pd.read_csv('data/B12324.csv')
+    new_season = pd.read_csv('data/B12425.csv')
+    df = pd.concat([last_season, new_season], axis=0)
+    df.drop_duplicates(inplace=True)
+    df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y').dt.date
+    df.sort_values('Date', ascending=False, inplace=True)
+    matches = df[['Date','HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR']]
     matches = matches.dropna()
     matches = pd.get_dummies(matches, columns=['FTR'])
     return matches
@@ -80,6 +86,11 @@ def merging_stats_to_match(team_home_stats, team_away_stats, match_data):
     final_data = final_data.dropna()
     return final_data
 
+def get_team_stats(team_home_stats, team_away_stats):
+    team_away_stats = team_away_stats.reset_index()
+    team_home_stats = team_home_stats.reset_index()
+    team_away_stats.to_csv('data/team_away_stats.csv', index=False)
+    team_home_stats.to_csv('data/team_home_stats.csv', index=False)
 # Function to train the model with manual parameters
 def model_training_with_manual_params(final_data, params):
     columns_to_predict = ['FTR_A', 'FTR_D', 'FTR_H']
@@ -88,24 +99,24 @@ def model_training_with_manual_params(final_data, params):
     ohe = OneHotEncoder(handle_unknown='ignore', sparse_output=False).set_output(transform="pandas")
     ohetransform = ohe.fit_transform(final_data[['HomeTeam', 'AwayTeam']])
     final_data = pd.concat([final_data, ohetransform], axis=1).drop(columns=['HomeTeam', 'AwayTeam'])
+    with open ('utils/ohe.pkl', 'wb') as f:
+        pickle.dump(ohe, f)
     
     X = final_data.drop(['Date'] + columns_to_predict, axis=1)
     y = final_data[columns_to_predict]
     
     # Split the data into train and test sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=332)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=233)
     
-    # Apply StandardScaler to scale the data
-    scaler = StandardScaler()
-    X_train = scaler.fit_transform(X_train)
-    X_test = scaler.transform(X_test)
-    
+  
     # Initialize the LogisticRegression model with user-defined parameters
     params['random_state'] = 1
     model = MultiOutputClassifier(LogisticRegression(**params))
     
     # Fit the model to the training data
     model.fit(X_train, y_train)
+    with open ('utils/model.pkl', 'wb') as f:
+        pickle.dump(model, f)
     
     # Make predictions on the test set
     y_pred = model.predict(X_test)
@@ -123,9 +134,9 @@ def model_training_with_manual_params(final_data, params):
 matches = load_df()
 team_home_stats = get_10_5_3_home_last_matches(matches)
 team_away_stats = get_10_5_3_away_last_matches(matches)
+team_stats = get_team_stats(team_home_stats, team_away_stats)
 match_data = getting_matches_data()
 final_data = merging_stats_to_match(team_home_stats, team_away_stats, match_data)
-
 # Define manual parameters
 manual_params = {
     'C': 1,  # Regularization strength
