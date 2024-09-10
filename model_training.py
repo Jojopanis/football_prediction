@@ -84,6 +84,9 @@ def merging_stats_to_match(team_home_stats, team_away_stats, match_data):
     final_data = final_data.sort_values('Date',ascending=False)
     final_data = pd.get_dummies(final_data, columns=['FTR'])
     final_data = final_data.dropna()
+    final_data['Outcome'] = final_data[['FTR_D', 'FTR_H', 'FTR_A']].idxmax(axis=1)
+    final_data = final_data.drop(columns=['FTR_D', 'FTR_H', 'FTR_A'])
+    final_data.to_csv('data/final_data.csv', index=False)
     return final_data
 
 def get_team_stats(team_home_stats, team_away_stats):
@@ -93,7 +96,7 @@ def get_team_stats(team_home_stats, team_away_stats):
     team_home_stats.to_csv('data/team_home_stats.csv', index=False)
 # Function to train the model with manual parameters
 def model_training_with_manual_params(final_data, params):
-    columns_to_predict = ['FTR_A', 'FTR_D', 'FTR_H']
+    columns_to_predict = ['Outcome']
     
     # OneHotEncode HomeTeam and AwayTeam
     ohe = OneHotEncoder(handle_unknown='ignore', sparse_output=False).set_output(transform="pandas")
@@ -113,6 +116,8 @@ def model_training_with_manual_params(final_data, params):
     params['random_state'] = 1
     model = MultiOutputClassifier(LogisticRegression(**params))
     
+    print(X)
+    print(y)
     # Fit the model to the training data
     model.fit(X_train, y_train)
     with open ('utils/model.pkl', 'wb') as f:
@@ -120,13 +125,13 @@ def model_training_with_manual_params(final_data, params):
     
     # Make predictions on the test set
     y_pred = model.predict(X_test)
+    proba = model.predict_proba(X_test)
     
-    # Calculate accuracy by comparing the predicted and true values
-    y_pred_class = np.argmax(y_pred, axis=1)
-    y_test_class = np.argmax(y_test.values, axis=1)
-    accuracy = accuracy_score(y_test_class, y_pred_class)
+
+    accuracy = accuracy_score(y_test, y_pred)
     
     print("Accuracy Score with Manual Parameters:", accuracy)
+    print(proba)
     
     return accuracy
 
