@@ -5,5 +5,5 @@ db = sqlite3.connect('data/JupilerProLeague.db')
 
 if __name__ == '__main__':
     create_tables(db)
-    matches, stats = process_csv('data/B12324.csv')
+    matches, stats = process_csv('data/B12425.csv')
     populate_tables(matches, stats)
