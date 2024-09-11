@@ -1,68 +1,81 @@
 import streamlit as st
 import pandas as pd
 from streamlit_calendar import calendar
+import plotly.express as px
+import base64
 
 # Load predictions
 prediction = pd.read_csv('data/predictions.csv')
+prediction = prediction.rename(columns={
+    'HomeTeam': 'HomeTeam',
+    'AwayTeam': 'AwayTeam',
+    'Date': 'Date',
+    'FTR_H': 'Home wins',
+    'FTR_D': 'Draw',
+    'FTR_A': 'Away wins',
+    'Prediction': 'Prediction'
+})
+# Function to determine the prediction label
+def get_prediction_label(row):
+    # Determine the prediction based on the highest probability
+    max_prob = max(row['Home wins'], row['Draw'], row['Away wins'])
+    if max_prob == row['Home wins']:
+        return f'{row["HomeTeam"]} wins'
+    elif max_prob == row['Draw']:
+        return 'Draw'
+    else:
+        return f'{row["AwayTeam"]} wins'
+
+# Apply the prediction label function to the DataFrame
+prediction['Prediction'] = prediction.apply(get_prediction_label, axis=1)
 
 logos_folder = "data/logos/"
-# Page Selection Logic
-if 'page' not in st.session_state:
-    st.session_state['page'] = 'calendar'  # Default page is the calendar
 
 # Function to switch to the details page with the selected event's prediction
 def show_prediction(event_index):
     st.session_state['page'] = 'details'
     st.session_state['selected_event'] = event_index
 
+# Function to get base64-encoded image data
+def get_logo_base64(team):
+    img_path = f"{logos_folder}{team}.png"
+    try:
+        with open(img_path, "rb") as img_file:
+            encoded_string = base64.b64encode(img_file.read()).decode('utf-8')
+        return f"data:image/png;base64,{encoded_string}"
+    except FileNotFoundError:
+        return ""
+
+# Page Selection Logic
+if 'page' not in st.session_state:
+    st.session_state['page'] = 'calendar'  # Default page is the calendar
+
 # Calendar Mode selection
 mode = st.selectbox(
     "Calendar Mode:",
-    (
-        "daygrid",
-        "list"
-    ),
+    ("daygrid", "list")
 )
 
-
-
-def get_logo(team):
-    return f"{logos_folder}{team}.png"
 # Create events from the prediction data
 events = []
 for idx, row in prediction.iterrows():
-    # Get team names and their logos
     home_team = row['HomeTeam']
     away_team = row['AwayTeam']
-    home_logo = get_logo(home_team)  # Get local logo path
-    away_logo = get_logo(away_team)  # Get local logo path
-
-    if home_logo:
-        home_logo_html = f'<img src="{home_logo}" style="width:16px; height:16px; vertical-align:middle;">'
-    else:
-        home_logo_html = ''
-    if away_logo:
-        away_logo_html = f'<img src="{away_logo}" style="width:16px; height:16px; vertical-align:middle;">'
-    else:
-        away_logo_html = ''
-
-    # Construct event title with team names and logos
-    title_with_logos = f"""
-        {home_logo_html} {home_team}
-        vs
-        {away_logo_html} {away_team}
-    """
-
-    # Append the event to the list
+    home_logo = get_logo_base64(home_team)  # Get base64 logo for home team
+    away_logo = get_logo_base64(away_team)  # Get base64 logo for away team
+    
+    # Create event with text
     events.append(
         {
-            "title": title_with_logos,  # Set the title with logos
+            "title": f"{home_team} vs {away_team}",
             "color": "#FF6C6C",
             "start": row['Date'],
             "end": row['Date'],
-            "probabilities": row["FTR_A"] + row["FTR_D"] + row["FTR_H"],
+            "probabilities": row["Home wins"] + row["Draw"] + row["Away wins"],
             "prediction": row["Prediction"],
-            "id": int(idx),  # Ensure ID is an integer
+            "home_logo": home_logo,
+            "away_logo": away_logo,
+            "id": int(idx),
         }
     )
 
@@ -96,7 +109,7 @@ if st.session_state['page'] == 'calendar':
     state = calendar(
         events=st.session_state.get("events", events),
         options=calendar_options,
-        custom_css="""
+        custom_css=""" 
         .fc-event-past {
             opacity: 0.8;
         }
@@ -123,10 +136,43 @@ elif st.session_state['page'] == 'details':
     event_idx = st.session_state['selected_event']
     selected_event = prediction.iloc[int(event_idx)]  # Ensure this is an integer
 
-    st.write(f"### Match: {selected_event['HomeTeam']} vs {selected_event['AwayTeam']}")
-    st.write(f"**Prediction**: {selected_event['Prediction']}")
-    st.write(f"**Date**: {selected_event['Date']}")
-    st.write(f"**Probabilities**: Home: {selected_event['FTR_H']}, Draw: {selected_event['FTR_D']}, Away: {selected_event['FTR_A']}")
+    # Get logos
+    home_team = selected_event['HomeTeam']
+    away_team = selected_event['AwayTeam']
+    home_logo = get_logo_base64(home_team)
+    away_logo = get_logo_base64(away_team)
+
+    # Create HTML content
+    html_content = f"""
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; margin-right: 10px;">
+            <img src="{home_logo}" style="width: 80px; height: 80px; vertical-align: middle;">
+            <div>{home_team}</div>
+        </div>
+        <div style="text-align: center; margin: 0 20px;">
+            <div style="font-size: 40px;">vs</div>
+        </div>
+        <div style="text-align: center; margin-left: 10px;">
+            <img src="{away_logo}" style="width: 80px; height: 80px; vertical-align: middle;">
+            <div>{away_team}</div>
+        </div>
+    </div>
+    <div style="margin-top: 20px;">
+        <strong>Prediction:</strong> {selected_event['Prediction']}<br>
+        <strong>Date:</strong> {selected_event['Date']}<br>
+        <strong>Probabilities:</strong> Home wins: {selected_event['Home wins']}, Draw: {selected_event['Draw']}, Away wins: {selected_event['Away wins']}
+    </div>
+    """
+
+    st.markdown(html_content, unsafe_allow_html=True)
+
+    # Display pie chart
+    fig = px.pie(
+        values=[selected_event['Home wins'], selected_event['Draw'], selected_event['Away wins']],
+        names=['Home wins', 'Draw', 'Away wins'],
+        title='Probabilities'
+    )
+    st.plotly_chart(fig)
 
     # Back button to return to calendar
     if st.button("Back to Calendar"):
