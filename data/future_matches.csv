@@ -1,0 +1,193 @@
+Date,HomeTeam,AwayTeam
+13/09/2024,Dender,Standard
+14/09/2024,Cercle Brugge,Genk
+14/09/2024,Kortrijk,Club Brugge
+14/09/2024,Anderlecht,Westerlo
+15/09/2024,Antwerp,St. Gilloise
+15/09/2024,St Truiden,Oud-Heverlee Leuven
+15/09/2024,Charleroi,Beerschot VA
+15/09/2024,Gent,Mechelen
+20/09/2024,Standard,St. Gilloise
+21/09/2024,Beerschot VA,St Truiden
+21/09/2024,Westerlo,Antwerp
+21/09/2024,Anderlecht,Charleroi
+22/09/2024,Club Brugge,Gent
+22/09/2024,Mechelen,Cercle Brugge
+22/09/2024,Genk,Dender
+22/09/2024,Oud-Heverlee Leuven,Kortrijk
+27/09/2024,Charleroi,Club Brugge
+28/09/2024,Genk,Mechelen
+28/09/2024,Standard,Westerlo
+28/09/2024,Dender,Anderlecht
+29/09/2024,Antwerp,Beerschot VA
+29/09/2024,St. Gilloise,Kortrijk
+29/09/2024,Gent,Oud-Heverlee Leuven
+29/09/2024,Cercle Brugge,St Truiden
+04/10/2024,Westerlo,Beerschot VA
+05/10/2024,Mechelen,Oud-Heverlee Leuven
+05/10/2024,Kortrijk,Genk
+05/10/2024,Dender,Charleroi
+06/10/2024,Anderlecht,Standard
+06/10/2024,Antwerp,Cercle Brugge
+06/10/2024,Club Brugge,St. Gilloise
+06/10/2024,St Truiden,Gent
+18/10/2024,Beerschot VA,Anderlecht
+19/10/2024,Westerlo,Club Brugge
+19/10/2024,Cercle Brugge,Dender
+19/10/2024,St. Gilloise,Gent
+20/10/2024,Genk,St Truiden
+20/10/2024,Oud-Heverlee Leuven,Antwerp
+20/10/2024,Standard,Charleroi
+20/10/2024,Mechelen,Kortrijk
+25/10/2024,Kortrijk,Beerschot VA
+26/10/2024,Charleroi,Oud-Heverlee Leuven
+26/10/2024,Dender,Mechelen
+26/10/2024,St Truiden,Westerlo
+27/10/2024,Club Brugge,Anderlecht
+27/10/2024,Antwerp,Standard
+27/10/2024,Gent,Genk
+27/10/2024,St. Gilloise,Cercle Brugge
+01/11/2024,Westerlo,Dender
+02/11/2024,Standard,St Truiden
+02/11/2024,Oud-Heverlee Leuven,Club Brugge
+02/11/2024,Mechelen,St. Gilloise
+03/11/2024,Genk,Antwerp
+03/11/2024,Cercle Brugge,Charleroi
+03/11/2024,Anderlecht,Kortrijk
+03/11/2024,Beerschot VA,Gent
+08/11/2024,St Truiden,Mechelen
+09/11/2024,Kortrijk,Antwerp
+09/11/2024,Dender,Oud-Heverlee Leuven
+09/11/2024,Charleroi,Westerlo
+10/11/2024,Cercle Brugge,Anderlecht
+10/11/2024,Gent,Standard
+10/11/2024,St. Gilloise,Genk
+10/11/2024,Beerschot VA,Club Brugge
+22/11/2024,Antwerp,Dender
+23/11/2024,Club Brugge,St Truiden
+23/11/2024,Standard,Cercle Brugge
+23/11/2024,Genk,Charleroi
+24/11/2024,Mechelen,Beerschot VA
+24/11/2024,Oud-Heverlee Leuven,St. Gilloise
+24/11/2024,Anderlecht,Gent
+24/11/2024,Westerlo,Kortrijk
+29/11/2024,Kortrijk,Mechelen
+30/11/2024,Club Brugge,Dender
+30/11/2024,Charleroi,Standard
+01/12/2024,St Truiden,Genk
+01/12/2024,Beerschot VA,Cercle Brugge
+01/12/2024,Oud-Heverlee Leuven,Anderlecht
+01/12/2024,St. Gilloise,Antwerp
+01/12/2024,Westerlo,Gent
+07/12/2024,Genk,Kortrijk
+07/12/2024,Mechelen,Club Brugge
+07/12/2024,Standard,Oud-Heverlee Leuven
+07/12/2024,Gent,St Truiden
+08/12/2024,Antwerp,Charleroi
+08/12/2024,Cercle Brugge,St. Gilloise
+08/12/2024,Anderlecht,Beerschot VA
+08/12/2024,Dender,Westerlo
+13/12/2024,Mechelen,Antwerp
+14/12/2024,Beerschot VA,Standard
+14/12/2024,Oud-Heverlee Leuven,Charleroi
+14/12/2024,Kortrijk,Dender
+15/12/2024,Club Brugge,Genk
+15/12/2024,St. Gilloise,Westerlo
+15/12/2024,St Truiden,Anderlecht
+15/12/2024,Gent,Cercle Brugge
+20/12/2024,Westerlo,Mechelen
+21/12/2024,Charleroi,St Truiden
+21/12/2024,Dender,Antwerp
+21/12/2024,Beerschot VA,Kortrijk
+22/12/2024,Standard,Gent
+22/12/2024,Genk,Anderlecht
+22/12/2024,St. Gilloise,Club Brugge
+22/12/2024,Cercle Brugge,Oud-Heverlee Leuven
+26/12/2024,Antwerp,Genk
+26/12/2024,Club Brugge,Westerlo
+26/12/2024,Kortrijk,Charleroi
+26/12/2024,Mechelen,Standard
+26/12/2024,Gent,St. Gilloise
+27/12/2024,Oud-Heverlee Leuven,Beerschot VA
+27/12/2024,St Truiden,Cercle Brugge
+27/12/2024,Anderlecht,Dender
+11/01/2025,Beerschot VA,Antwerp
+11/01/2025,Genk,Oud-Heverlee Leuven
+11/01/2025,Standard,Kortrijk
+11/01/2025,Westerlo,St Truiden
+11/01/2025,Charleroi,St. Gilloise
+11/01/2025,Cercle Brugge,Mechelen
+11/01/2025,Anderlecht,Club Brugge
+11/01/2025,Dender,Gent
+18/01/2025,Gent,Charleroi
+18/01/2025,Mechelen,Genk
+18/01/2025,Kortrijk,Anderlecht
+18/01/2025,Antwerp,Westerlo
+18/01/2025,Club Brugge,Beerschot VA
+18/01/2025,Dender,Cercle Brugge
+18/01/2025,St Truiden,Standard
+18/01/2025,St. Gilloise,Oud-Heverlee Leuven
+25/01/2025,Beerschot VA,St. Gilloise
+25/01/2025,Westerlo,Genk
+25/01/2025,Charleroi,Cercle Brugge
+25/01/2025,Oud-Heverlee Leuven,Gent
+25/01/2025,Club Brugge,Kortrijk
+25/01/2025,Standard,Dender
+25/01/2025,St Truiden,Antwerp
+25/01/2025,Anderlecht,Mechelen
+01/02/2025,Gent,Anderlecht
+01/02/2025,Genk,Beerschot VA
+01/02/2025,St. Gilloise,St Truiden
+01/02/2025,Kortrijk,Westerlo
+01/02/2025,Antwerp,Club Brugge
+01/02/2025,Cercle Brugge,Standard
+01/02/2025,Charleroi,Dender
+01/02/2025,Oud-Heverlee Leuven,Mechelen
+08/02/2025,Westerlo,Standard
+08/02/2025,Anderlecht,Antwerp
+08/02/2025,Dender,St Truiden
+08/02/2025,Club Brugge,Oud-Heverlee Leuven
+08/02/2025,Beerschot VA,Charleroi
+08/02/2025,Genk,Cercle Brugge
+08/02/2025,Kortrijk,St. Gilloise
+08/02/2025,Mechelen,Gent
+15/02/2025,Antwerp,Kortrijk
+15/02/2025,Gent,Beerschot VA
+15/02/2025,Oud-Heverlee Leuven,Dender
+15/02/2025,St Truiden,Club Brugge
+15/02/2025,Standard,Genk
+15/02/2025,Cercle Brugge,Westerlo
+15/02/2025,St. Gilloise,Mechelen
+15/02/2025,Charleroi,Anderlecht
+22/02/2025,Dender,Beerschot VA
+22/02/2025,Westerlo,Charleroi
+22/02/2025,Kortrijk,Cercle Brugge
+22/02/2025,Anderlecht,St. Gilloise
+22/02/2025,Antwerp,Oud-Heverlee Leuven
+22/02/2025,Genk,Gent
+22/02/2025,Club Brugge,Standard
+22/02/2025,Mechelen,St Truiden
+01/03/2025,St. Gilloise,Dender
+01/03/2025,Standard,Anderlecht
+01/03/2025,Beerschot VA,Mechelen
+01/03/2025,Charleroi,Genk
+01/03/2025,Cercle Brugge,Antwerp
+01/03/2025,Gent,Club Brugge
+01/03/2025,Oud-Heverlee Leuven,Westerlo
+01/03/2025,St Truiden,Kortrijk
+08/03/2025,Dender,Genk
+08/03/2025,Kortrijk,Oud-Heverlee Leuven
+08/03/2025,St Truiden,Beerschot VA
+08/03/2025,St. Gilloise,Standard
+08/03/2025,Westerlo,Anderlecht
+08/03/2025,Cercle Brugge,Club Brugge
+08/03/2025,Antwerp,Gent
+08/03/2025,Charleroi,Mechelen
+15/03/2025,Standard,Antwerp
+15/03/2025,Oud-Heverlee Leuven,St Truiden
+15/03/2025,Club Brugge,Charleroi
+15/03/2025,Beerschot VA,Westerlo
+15/03/2025,Anderlecht,Cercle Brugge
+15/03/2025,Genk,St. Gilloise
+15/03/2025,Gent,Kortrijk
+15/03/2025,Mechelen,Dender
