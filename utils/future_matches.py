@@ -37,7 +37,7 @@ def change_team_names(name:str):
         "La Gantoise":"Gent",
         "KV Courtrai":"Kortrijk",
         "KV Malines":"Mechelen",
-        "OH Louvain":"Leuven",
+        "OH Louvain":"Oud-Heverlee Leuven",
         "STVV":"St Truiden",
         "Union SG":"St. Gilloise",
         "Standard":"Standard",

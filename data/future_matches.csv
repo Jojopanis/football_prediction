@@ -4,7 +4,7 @@ Date,HomeTeam,AwayTeam
 14/09/2024,Kortrijk,Club Brugge
 14/09/2024,Anderlecht,Westerlo
 15/09/2024,Antwerp,St. Gilloise
-15/09/2024,St Truiden,Leuven
+15/09/2024,St Truiden,Oud-Heverlee Leuven
 15/09/2024,Charleroi,Beerschot VA
 15/09/2024,Gent,Mechelen
 20/09/2024,Standard,St. Gilloise
@@ -14,17 +14,17 @@ Date,HomeTeam,AwayTeam
 22/09/2024,Club Brugge,Gent
 22/09/2024,Mechelen,Cercle Brugge
 22/09/2024,Genk,Dender
-22/09/2024,Leuven,Kortrijk
+22/09/2024,Oud-Heverlee Leuven,Kortrijk
 27/09/2024,Charleroi,Club Brugge
 28/09/2024,Genk,Mechelen
 28/09/2024,Standard,Westerlo
 28/09/2024,Dender,Anderlecht
 29/09/2024,Antwerp,Beerschot VA
 29/09/2024,St. Gilloise,Kortrijk
-29/09/2024,Gent,Leuven
+29/09/2024,Gent,Oud-Heverlee Leuven
 29/09/2024,Cercle Brugge,St Truiden
 04/10/2024,Westerlo,Beerschot VA
-05/10/2024,Mechelen,Leuven
+05/10/2024,Mechelen,Oud-Heverlee Leuven
 05/10/2024,Kortrijk,Genk
 05/10/2024,Dender,Charleroi
 06/10/2024,Anderlecht,Standard
@@ -36,11 +36,11 @@ Date,HomeTeam,AwayTeam
 19/10/2024,Cercle Brugge,Dender
 19/10/2024,St. Gilloise,Gent
 20/10/2024,Genk,St Truiden
-20/10/2024,Leuven,Antwerp
+20/10/2024,Oud-Heverlee Leuven,Antwerp
 20/10/2024,Standard,Charleroi
 20/10/2024,Mechelen,Kortrijk
 25/10/2024,Kortrijk,Beerschot VA
-26/10/2024,Charleroi,Leuven
+26/10/2024,Charleroi,Oud-Heverlee Leuven
 26/10/2024,Dender,Mechelen
 26/10/2024,St Truiden,Westerlo
 27/10/2024,Club Brugge,Anderlecht
@@ -49,7 +49,7 @@ Date,HomeTeam,AwayTeam
 27/10/2024,St. Gilloise,Cercle Brugge
 01/11/2024,Westerlo,Dender
 02/11/2024,Standard,St Truiden
-02/11/2024,Leuven,Club Brugge
+02/11/2024,Oud-Heverlee Leuven,Club Brugge
 02/11/2024,Mechelen,St. Gilloise
 03/11/2024,Genk,Antwerp
 03/11/2024,Cercle Brugge,Charleroi
@@ -57,7 +57,7 @@ Date,HomeTeam,AwayTeam
 03/11/2024,Beerschot VA,Gent
 08/11/2024,St Truiden,Mechelen
 09/11/2024,Kortrijk,Antwerp
-09/11/2024,Dender,Leuven
+09/11/2024,Dender,Oud-Heverlee Leuven
 09/11/2024,Charleroi,Westerlo
 10/11/2024,Cercle Brugge,Anderlecht
 10/11/2024,Gent,Standard
@@ -68,7 +68,7 @@ Date,HomeTeam,AwayTeam
 23/11/2024,Standard,Cercle Brugge
 23/11/2024,Genk,Charleroi
 24/11/2024,Mechelen,Beerschot VA
-24/11/2024,Leuven,St. Gilloise
+24/11/2024,Oud-Heverlee Leuven,St. Gilloise
 24/11/2024,Anderlecht,Gent
 24/11/2024,Westerlo,Kortrijk
 29/11/2024,Kortrijk,Mechelen
@@ -76,12 +76,12 @@ Date,HomeTeam,AwayTeam
 30/11/2024,Charleroi,Standard
 01/12/2024,St Truiden,Genk
 01/12/2024,Beerschot VA,Cercle Brugge
-01/12/2024,Leuven,Anderlecht
+01/12/2024,Oud-Heverlee Leuven,Anderlecht
 01/12/2024,St. Gilloise,Antwerp
 01/12/2024,Westerlo,Gent
 07/12/2024,Genk,Kortrijk
 07/12/2024,Mechelen,Club Brugge
-07/12/2024,Standard,Leuven
+07/12/2024,Standard,Oud-Heverlee Leuven
 07/12/2024,Gent,St Truiden
 08/12/2024,Antwerp,Charleroi
 08/12/2024,Cercle Brugge,St. Gilloise
@@ -89,7 +89,7 @@ Date,HomeTeam,AwayTeam
 08/12/2024,Dender,Westerlo
 13/12/2024,Mechelen,Antwerp
 14/12/2024,Beerschot VA,Standard
-14/12/2024,Leuven,Charleroi
+14/12/2024,Oud-Heverlee Leuven,Charleroi
 14/12/2024,Kortrijk,Dender
 15/12/2024,Club Brugge,Genk
 15/12/2024,St. Gilloise,Westerlo
@@ -102,17 +102,17 @@ Date,HomeTeam,AwayTeam
 22/12/2024,Standard,Gent
 22/12/2024,Genk,Anderlecht
 22/12/2024,St. Gilloise,Club Brugge
-22/12/2024,Cercle Brugge,Leuven
+22/12/2024,Cercle Brugge,Oud-Heverlee Leuven
 26/12/2024,Antwerp,Genk
 26/12/2024,Club Brugge,Westerlo
 26/12/2024,Kortrijk,Charleroi
 26/12/2024,Mechelen,Standard
 26/12/2024,Gent,St. Gilloise
-27/12/2024,Leuven,Beerschot VA
+27/12/2024,Oud-Heverlee Leuven,Beerschot VA
 27/12/2024,St Truiden,Cercle Brugge
 27/12/2024,Anderlecht,Dender
 11/01/2025,Beerschot VA,Antwerp
-11/01/2025,Genk,Leuven
+11/01/2025,Genk,Oud-Heverlee Leuven
 11/01/2025,Standard,Kortrijk
 11/01/2025,Westerlo,St Truiden
 11/01/2025,Charleroi,St. Gilloise
@@ -126,11 +126,11 @@ Date,HomeTeam,AwayTeam
 18/01/2025,Club Brugge,Beerschot VA
 18/01/2025,Dender,Cercle Brugge
 18/01/2025,St Truiden,Standard
-18/01/2025,St. Gilloise,Leuven
+18/01/2025,St. Gilloise,Oud-Heverlee Leuven
 25/01/2025,Beerschot VA,St. Gilloise
 25/01/2025,Westerlo,Genk
 25/01/2025,Charleroi,Cercle Brugge
-25/01/2025,Leuven,Gent
+25/01/2025,Oud-Heverlee Leuven,Gent
 25/01/2025,Club Brugge,Kortrijk
 25/01/2025,Standard,Dender
 25/01/2025,St Truiden,Antwerp
@@ -142,18 +142,18 @@ Date,HomeTeam,AwayTeam
 01/02/2025,Antwerp,Club Brugge
 01/02/2025,Cercle Brugge,Standard
 01/02/2025,Charleroi,Dender
-01/02/2025,Leuven,Mechelen
+01/02/2025,Oud-Heverlee Leuven,Mechelen
 08/02/2025,Westerlo,Standard
 08/02/2025,Anderlecht,Antwerp
 08/02/2025,Dender,St Truiden
-08/02/2025,Club Brugge,Leuven
+08/02/2025,Club Brugge,Oud-Heverlee Leuven
 08/02/2025,Beerschot VA,Charleroi
 08/02/2025,Genk,Cercle Brugge
 08/02/2025,Kortrijk,St. Gilloise
 08/02/2025,Mechelen,Gent
 15/02/2025,Antwerp,Kortrijk
 15/02/2025,Gent,Beerschot VA
-15/02/2025,Leuven,Dender
+15/02/2025,Oud-Heverlee Leuven,Dender
 15/02/2025,St Truiden,Club Brugge
 15/02/2025,Standard,Genk
 15/02/2025,Cercle Brugge,Westerlo
@@ -163,7 +163,7 @@ Date,HomeTeam,AwayTeam
 22/02/2025,Westerlo,Charleroi
 22/02/2025,Kortrijk,Cercle Brugge
 22/02/2025,Anderlecht,St. Gilloise
-22/02/2025,Antwerp,Leuven
+22/02/2025,Antwerp,Oud-Heverlee Leuven
 22/02/2025,Genk,Gent
 22/02/2025,Club Brugge,Standard
 22/02/2025,Mechelen,St Truiden
@@ -173,10 +173,10 @@ Date,HomeTeam,AwayTeam
 01/03/2025,Charleroi,Genk
 01/03/2025,Cercle Brugge,Antwerp
 01/03/2025,Gent,Club Brugge
-01/03/2025,Leuven,Westerlo
+01/03/2025,Oud-Heverlee Leuven,Westerlo
 01/03/2025,St Truiden,Kortrijk
 08/03/2025,Dender,Genk
-08/03/2025,Kortrijk,Leuven
+08/03/2025,Kortrijk,Oud-Heverlee Leuven
 08/03/2025,St Truiden,Beerschot VA
 08/03/2025,St. Gilloise,Standard
 08/03/2025,Westerlo,Anderlecht
@@ -184,7 +184,7 @@ Date,HomeTeam,AwayTeam
 08/03/2025,Antwerp,Gent
 08/03/2025,Charleroi,Mechelen
 15/03/2025,Standard,Antwerp
-15/03/2025,Leuven,St Truiden
+15/03/2025,Oud-Heverlee Leuven,St Truiden
 15/03/2025,Club Brugge,Charleroi
 15/03/2025,Beerschot VA,Westerlo
 15/03/2025,Anderlecht,Cercle Brugge
