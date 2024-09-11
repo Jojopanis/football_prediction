@@ -1,0 +1,79 @@
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: airflow
+      MYSQL_USER: airflow
+      MYSQL_PASSWORD: airflowpassword
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  airflow-webserver:
+    image: apache/airflow:latest-python3.12
+    depends_on:
+      - mysql
+      - airflow-init
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: 'mysql+mysqlconnector://airflow:airflowpassword@mysql/airflow'
+      AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+      AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX: 'True'
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+    ports:
+      - "8080:8080"
+    command: webserver
+
+  airflow-scheduler:
+    image: apache/airflow:latest-python3.12
+    depends_on:
+      - mysql
+      - airflow-init
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: 'mysql+mysqlconnector://airflow:airflowpassword@mysql/airflow'
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+    command: scheduler
+
+  airflow-init:
+    image: apache/airflow:latest-python3.12
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: 'mysql+mysqlconnector://airflow:airflowpassword@mysql/airflow'
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+    entrypoint: >
+      /bin/bash -c "
+      airflow db init &&
+      airflow users create \
+          --username Broma \
+          --password broma1286 \
+          --firstname Lalo \
+          --lastname Broma \
+          --role Admin \
+          --email loic.rouaud@gmail.com
+      "
+
+  airflow-cli:
+    image: apache/airflow:latest-python3.12
+    depends_on:
+      - mysql
+      - airflow-init
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: 'mysql+mysqlconnector://airflow:airflowpassword@mysql/airflow'
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+    entrypoint: "/bin/bash"
+
+volumes:
+  mysql_data:
+    driver: local  # Docker will manage this volume
