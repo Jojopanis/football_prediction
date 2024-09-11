@@ -46,6 +46,31 @@ def get_logo_base64(team):
     except FileNotFoundError:
         return ""
 
+
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background: url("https://img1.getimg.ai/generated/img-oUzQl2VcGvfTvt01afrXN.jpeg");
+        background-size: cover;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Center the image and adjust its size
+col1, col2, col3 = st.columns([1, 2, 1])  # Adjust column width ratios as needed
+
+with col1:
+    st.write("")  # Empty column for spacing
+with col2:
+    st.image('data\logos\jupilerproleague.png', use_column_width=False, width=300)  # Adjust width to make it bigger
+with col3:
+    st.write("")  # Empty column for spacing
+
+st.title('🍻 Jupiler Pro League 🍻')
+
 # Page Selection Logic
 if 'page' not in st.session_state:
     st.session_state['page'] = 'calendar'  # Default page is the calendar
@@ -103,6 +128,7 @@ elif mode == 'daygrid':
         "initialView": "dayGridMonth",
     }
 
+
 # Display the calendar or the details based on session state
 if st.session_state['page'] == 'calendar':
     # Calendar page
@@ -132,6 +158,7 @@ if st.session_state['page'] == 'calendar':
         show_prediction(int(event_id))  # Cast to int to ensure it's an integer
 
 elif st.session_state['page'] == 'details':
+    st.title('Match Prediction Details')
     # Display the prediction details for the selected event
     event_idx = st.session_state['selected_event']
     selected_event = prediction.iloc[int(event_idx)]  # Ensure this is an integer
