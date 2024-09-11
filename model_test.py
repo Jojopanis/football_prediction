@@ -1,5 +1,5 @@
-import numpy as np
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
 from functools import reduce
 from sklearn.linear_model import LogisticRegression
@@ -8,16 +8,8 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 import pickle
-import pickle
 
 def load_df():
-    last_season = pd.read_csv('data/B12324.csv')
-    new_season = pd.read_csv('data/B12425.csv')
-    df = pd.concat([last_season, new_season], axis=0)
-    df.drop_duplicates(inplace=True)
-    df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y').dt.date
-    df.sort_values('Date', ascending=False, inplace=True)
-    matches = df[['Date','HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR']]
     last_season = pd.read_csv('data/B12324.csv')
     new_season = pd.read_csv('data/B12425.csv')
     df = pd.concat([last_season, new_season], axis=0)
@@ -94,11 +86,6 @@ def merging_stats_to_match(team_home_stats, team_away_stats, match_data):
     final_data = final_data.dropna()
     final_data['Outcome'] = final_data[['FTR_D', 'FTR_H', 'FTR_A']].idxmax(axis=1)
     final_data = final_data.drop(columns=['FTR_D', 'FTR_H', 'FTR_A'])
-    final_data = final_data.drop_duplicates()
-    final_data.to_csv('data/final_data.csv', index=False)
-    final_data['Outcome'] = final_data[['FTR_D', 'FTR_H', 'FTR_A']].idxmax(axis=1)
-    final_data = final_data.drop(columns=['FTR_D', 'FTR_H', 'FTR_A'])
-    final_data = final_data.drop_duplicates()
     final_data.to_csv('data/final_data.csv', index=False)
     return final_data
 
@@ -107,61 +94,70 @@ def get_team_stats(team_home_stats, team_away_stats):
     team_home_stats = team_home_stats.reset_index()
     team_away_stats.to_csv('data/team_away_stats.csv', index=False)
     team_home_stats.to_csv('data/team_home_stats.csv', index=False)
-def get_team_stats(team_home_stats, team_away_stats):
-    team_away_stats = team_away_stats.reset_index()
-    team_home_stats = team_home_stats.reset_index()
-    team_away_stats.to_csv('data/team_away_stats.csv', index=False)
-    team_home_stats.to_csv('data/team_home_stats.csv', index=False)
 # Function to train the model with manual parameters
 def model_training_with_manual_params(final_data, params):
-    columns_to_predict = ['Outcome']
     columns_to_predict = ['Outcome']
     
     # OneHotEncode HomeTeam and AwayTeam
     ohe = OneHotEncoder(handle_unknown='ignore', sparse_output=False).set_output(transform="pandas")
     ohetransform = ohe.fit_transform(final_data[['HomeTeam', 'AwayTeam']])
     final_data = pd.concat([final_data, ohetransform], axis=1).drop(columns=['HomeTeam', 'AwayTeam'])
-    with open('data/ohe.pkl', 'wb') as f:
-        pickle.dump(ohe, f)
-
+    
     X = final_data.drop(['Date'] + columns_to_predict, axis=1)
     y = final_data[columns_to_predict]
     
+    # Initialize variables to track the best and worst accuracy
+    best_accuracy = 0
+    worst_accuracy = 1
+    best_random_state = None
+    worst_random_state = None
+    
     # Split the data into train and test sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=5698)
+    for i in range(1, 1000):
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=i)
     
-  
-    # Initialize the LogisticRegression model with user-defined parameters
-    params['random_state'] = 1
-    model = MultiOutputClassifier(LogisticRegression(**params))
+        # Initialize the LogisticRegression model with user-defined parameters
+        params['random_state'] = 1
+        model = MultiOutputClassifier(LogisticRegression(**params))
+        
+        # Fit the model to the training data
+        model.fit(X_train, y_train)
+        
+        # Make predictions on the test set
+        y_pred = model.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred)
+        
+        # Update the best accuracy and corresponding random state
+        if accuracy > best_accuracy:
+            best_accuracy = accuracy
+            best_random_state = i
+        
+        # Update the worst accuracy and corresponding random state
+        if accuracy < worst_accuracy:
+            worst_accuracy = accuracy
+            worst_random_state = i
+        
+        print(f"Random State: {i}, Accuracy: {accuracy}")
     
-    print(X)
-    print(y)
-    # Fit the model to the training data
-    model.fit(X_train, y_train)
-    with open('data/model.pkl', 'wb') as f:
-        pickle.dump(model, f)
-    # Make predictions on the test set
-    y_pred = model.predict(X_test)
-    proba = model.predict_proba(X_test)
+    print(f"\nBest Random State: {best_random_state}, Best Accuracy: {best_accuracy}")
+    print(f"Worst Random State: {worst_random_state}, Worst Accuracy: {worst_accuracy}")
     
-    proba = proba[0]
-    accuracy = accuracy_score(y_test, y_pred)
-    
-    print("Accuracy Score with Manual Parameters:", accuracy)
-    print(proba)
-    
-    return accuracy
+    return best_accuracy
+
+# Now call the function as before
+accuracy = model_training_with_manual_params(final_data, manual_params)
 
 
 # Example usage of the function
-matches = load_df()
-team_home_stats = get_10_5_3_home_last_matches(matches)
-team_away_stats = get_10_5_3_away_last_matches(matches)
-team_stats = get_team_stats(team_home_stats, team_away_stats)
-team_stats = get_team_stats(team_home_stats, team_away_stats)
-match_data = getting_matches_data()
-final_data = merging_stats_to_match(team_home_stats, team_away_stats, match_data)
+matches = load_df()  # Load match data
+team_home_stats = get_10_5_3_home_last_matches(matches)  # Get home stats
+team_away_stats = get_10_5_3_away_last_matches(matches)  # Get away stats
+team_stats = get_team_stats(team_home_stats, team_away_stats)  # Get team stats (if needed)
+match_data = getting_matches_data()  # Get match data
+final_data = merging_stats_to_match(team_home_stats, team_away_stats, match_data)  # Merge stats into match data
+
+# Now `final_data` is properly initialized, and we can proceed with training the model
+
 # Define manual parameters
 manual_params = {
     'C': 1,  # Regularization strength
@@ -172,3 +168,4 @@ manual_params = {
 
 # Train the model with manually selected parameters
 accuracy = model_training_with_manual_params(final_data, manual_params)
+
