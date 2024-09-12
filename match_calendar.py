@@ -51,7 +51,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background: url("https://img1.getimg.ai/generated/img-oUzQl2VcGvfTvt01afrXN.jpeg");
+        background: url("https://img1.getimg.ai/generated/img-VocOZEcYGF4mh18aVV52o.jpeg");
         background-size: cover;
     }
     </style>
