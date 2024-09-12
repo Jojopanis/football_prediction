@@ -7,7 +7,7 @@ services:
       MYSQL_USER: airflow
       MYSQL_PASSWORD: airflowpassword
     volumes:
-      - ./mysql_data:/var/lib/mysql
+      - ./airflow/mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
 
@@ -21,9 +21,9 @@ services:
       AIRFLOW__CORE__EXECUTOR: CeleryExecutor
       AIRFLOW__WEBSERVER__ENABLE_PROXY_FIX: 'True'
     volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
-      - ./plugins:/opt/airflow/plugins
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
     ports:
       - "8080:8080"
     command: webserver
@@ -36,9 +36,9 @@ services:
     environment:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: 'mysql+mysqlconnector://airflow:airflowpassword@mysql/airflow'
     volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
-      - ./plugins:/opt/airflow/plugins
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
     command: scheduler
 
   airflow-init:
@@ -46,20 +46,19 @@ services:
     environment:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: 'mysql+mysqlconnector://airflow:airflowpassword@mysql/airflow'
     volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
-      - ./plugins:/opt/airflow/plugins
-    entrypoint: >
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+    entrypoint:
       /bin/bash -c "
       airflow db init &&
       airflow users create \
-          --username Broma \
-          --password broma1286 \
-          --firstname Lalo \
-          --lastname Broma \
+          --username admin \
+          --password admin \
+          --firstname admin \
+          --lastname admin \
           --role Admin \
-          --email loic.rouaud@gmail.com
-      "
+          --email admin@example.com"
 
   airflow-cli:
     image: apache/airflow:latest-python3.12
@@ -69,9 +68,9 @@ services:
     environment:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: 'mysql+mysqlconnector://airflow:airflowpassword@mysql/airflow'
     volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
-      - ./plugins:/opt/airflow/plugins
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
     entrypoint: "/bin/bash"
 
 volumes:
