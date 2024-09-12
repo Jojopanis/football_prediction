@@ -238,11 +238,13 @@ if page_selection == "Home (Calendar)":
             st.write(f"**Draw**: {selected_event['Odds_Draw']}")
             st.write(f"**Away wins**: {selected_event['Odds_AwayWins']}")
 
+        custom_colors = ["#7CC674", "#73C5C5", "#C9190B"]
         # Display pie chart for probabilities
         fig = px.pie(
             values=[selected_event['Home wins'], selected_event['Draw'], selected_event['Away wins']],
             names=['Home wins', 'Draw', 'Away wins'],
-            title='Probabilities'
+            title='Probabilities',
+            color_discrete_sequence=custom_colors
         )
         st.plotly_chart(fig)
 
