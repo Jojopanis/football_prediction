@@ -90,6 +90,19 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+
+# Center the image and adjust its size
+col1, col2, col3 = st.columns([1, 2, 1])  # Adjust column width ratios as needed
+
+with col1:
+    st.write("")  # Empty column for spacing
+with col2:
+    st.image('data/logos/jupilerproleague.png', use_column_width=False, width=300)  # Adjust width to make it bigger
+with col3:
+    st.write("")  # Empty column for spacing
+
+st.markdown('<h1 class="title">🍻 Jupiler Pro League 🍻</h1>', unsafe_allow_html=True)
+
 # Sidebar with radio button to switch between Calendar and Leaderboard
 page_selection = st.sidebar.radio(
     "Navigation",
