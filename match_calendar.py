@@ -101,7 +101,6 @@ with col2:
 with col3:
     st.write("")  # Empty column for spacing
 
-st.markdown('<h1 class="title">🍻 Jupiler Pro League 🍻</h1>', unsafe_allow_html=True)
 
 # Sidebar with radio button to switch between Calendar and Leaderboard
 page_selection = st.sidebar.radio(

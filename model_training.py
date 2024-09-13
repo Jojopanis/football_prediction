@@ -18,13 +18,6 @@ def load_df():
     df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y').dt.date
     df.sort_values('Date', ascending=False, inplace=True)
     matches = df[['Date','HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR']]
-    last_season = pd.read_csv('data/B12324.csv')
-    new_season = pd.read_csv('data/B12425.csv')
-    df = pd.concat([last_season, new_season], axis=0)
-    df.drop_duplicates(inplace=True)
-    df['Date'] = pd.to_datetime(df['Date'], format='%d/%m/%Y').dt.date
-    df.sort_values('Date', ascending=False, inplace=True)
-    matches = df[['Date','HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR']]
     matches = matches.dropna()
     matches = pd.get_dummies(matches, columns=['FTR'])
     return matches
