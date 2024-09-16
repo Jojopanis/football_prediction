@@ -73,7 +73,6 @@ def get_10_5_3_away_last_matches(matches):
     dfs = [last_away_10,last_away_5,last_away_3]
     team_away_stats = reduce(lambda left, right : pd.merge(left,right, on=['AwayTeam'],how='outer'), dfs)
     return team_away_stats
-
 def getting_matches_data():
     match_data = pd.read_csv('data/dataset.csv')
     match_data = match_data[['Date','HomeTeam','AwayTeam','FTR']]
