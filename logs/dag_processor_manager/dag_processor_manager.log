@@ -1,0 +1,91 @@
+[2024-09-16T08:36:58.623+0000] {manager.py:487} INFO - Processing files using up to 2 processes at a time 
+[2024-09-16T08:36:58.632+0000] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2024-09-16T08:36:58.643+0000] {manager.py:489} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-09-16T08:36:58.663+0000] {manager.py:759} INFO - Searching for files in /opt/airflow/dags
+[2024-09-16T08:36:58.724+0000] {manager.py:762} INFO - There are 1 files in /opt/airflow/dags
+[2024-09-16T08:36:59.744+0000] {manager.py:893} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+--------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/weeklyscraper_dag.py    199  0.52s             0           0
+================================================================================
+[2024-09-16T08:37:30.279+0000] {manager.py:893} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                               PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+--------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/weeklyscraper_dag.py                           1           0  3.97s           2024-09-16T08:37:03
+================================================================================
+[2024-09-16T08:38:00.527+0000] {manager.py:893} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                               PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+--------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/weeklyscraper_dag.py                           1           0  1.91s           2024-09-16T08:37:35
+================================================================================
+[2024-09-16T08:38:30.697+0000] {manager.py:893} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                               PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+--------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/weeklyscraper_dag.py                           1           0  0.90s           2024-09-16T08:38:06
+================================================================================
+[2024-09-16T08:39:01.020+0000] {manager.py:893} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                               PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+--------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/weeklyscraper_dag.py                           1           0  0.92s           2024-09-16T08:38:37
+================================================================================
+[2024-09-16T08:39:31.963+0000] {manager.py:893} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                               PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+--------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/weeklyscraper_dag.py                           1           0  1.04s           2024-09-16T08:39:09
+================================================================================
+[2024-09-16T12:11:14.562+0000] {manager.py:487} INFO - Processing files using up to 2 processes at a time 
+[2024-09-16T12:11:14.563+0000] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2024-09-16T12:11:14.563+0000] {manager.py:489} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-09-16T12:11:14.563+0000] {manager.py:759} INFO - Searching for files in /opt/airflow/dags
+[2024-09-16T12:11:14.564+0000] {manager.py:762} INFO - There are 1 files in /opt/airflow/dags
+[2024-09-16T12:11:14.631+0000] {manager.py:893} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+--------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/weeklyscraper_dag.py    178  0.03s             0           0
+================================================================================
+[2024-09-16T12:11:44.715+0000] {manager.py:893} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                               PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+--------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/weeklyscraper_dag.py                           1           0  0.65s           2024-09-16T12:11:15
+================================================================================
+[2024-09-16T12:12:14.754+0000] {manager.py:893} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                               PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+--------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/weeklyscraper_dag.py                           1           0  0.33s           2024-09-16T12:11:45
+================================================================================
+[2024-09-16T12:12:44.852+0000] {manager.py:893} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                               PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+--------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/weeklyscraper_dag.py                           1           0  0.31s           2024-09-16T12:12:16
+================================================================================
+[2024-09-16T12:12:45.864+0000] {manager.py:469} INFO - Exiting gracefully upon receiving signal 15
