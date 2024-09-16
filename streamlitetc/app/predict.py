@@ -105,7 +105,7 @@ def show_predict():
         'AR': [default_values['AR']]
     })
 
-    conn = sqlite3.connect('football_matches.db')
+    conn = sqlite3.connect('data/JupilerProLeague.db')
     
     query = f"""
     SELECT 
