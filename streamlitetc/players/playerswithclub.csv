@@ -1,0 +1,95 @@
+name,position,age,club,market,club_value
+Andreas Skov Olsen,Right Winger,24,Club Brugge KV,18.0,€136.85m
+Anders Dreyer,Right Winger,26,RSC Anderlecht,15.0,€115.80m
+Kasper Dolberg,Centre-Forward,26,RSC Anderlecht,12.0,€115.80m
+Koki Machida,Centre-Back,27,Union Saint-Gilloise,10.0,€77.30m
+Raphael Onyedika,Defensive Midfield,23,Club Brugge KV,10.0,€136.85m
+Mario Stroeykens,Attacking Midfield,19,RSC Anderlecht,10.0,€115.80m
+Bryan Heynen,Central Midfield,27,KRC Genk,10.0,€73.60m
+Christos Tzolis,Left Winger,22,Club Brugge KV,10.0,€136.85m
+Maxim De Cuyper,Left-Back,23,Club Brugge KV,9.0,€136.85m
+Michel-Ange Balikwisha,Left Winger,23,Royal Antwerp FC,9.0,€60.70m
+Yari Verschaeren,Attacking Midfield,23,RSC Anderlecht,8.5,€115.80m
+Jean Butez,Goalkeeper,29,Royal Antwerp FC,8.0,€60.70m
+Vincent Janssen,Centre-Forward,30,Royal Antwerp FC,8.0,€60.70m
+Samuel Edozie,Left Winger,21,RSC Anderlecht,8.0,€115.80m
+Ferran Jutglà,Centre-Forward,25,Club Brugge KV,7.5,€136.85m
+Hans Vanaken,Attacking Midfield,32,Club Brugge KV,7.0,€136.85m
+Leander Dendoncker,Defensive Midfield,29,RSC Anderlecht,7.0,€115.80m
+Tsuyoshi Watanabe,Centre-Back,27,KAA Gent,7.0,€55.45m
+Luka Vuskovic,Centre-Back,17,KVC Westerlo,7.0,€40.88m
+Viktor Djukanovic,Left Winger,20,Standard Liège,7.0,€52.75m
+Hugo Vetlesen,Central Midfield,24,Club Brugge KV,7.0,€136.85m
+Ardon Jashari,Defensive Midfield,22,Club Brugge KV,6.0,€136.85m
+Sofiane Boufal,Left Winger,30,Union Saint-Gilloise,6.0,€77.30m
+Kevin Mac Allister,Centre-Back,26,Union Saint-Gilloise,6.0,€77.30m
+Zeno Van Den Bosch,Centre-Back,21,Royal Antwerp FC,6.0,€60.70m
+Arnaud Bodart,Goalkeeper,26,Standard Liège,6.0,€52.75m
+Thomas Foket,Right-Back,29,RSC Anderlecht,6.0,€115.80m
+Zaid Romero,Centre-Back,24,Club Brugge KV,6.0,€136.85m
+Bjorn Meijer,Left-Back,21,Club Brugge KV,6.0,€136.85m
+Alessio Castro-Montes,Right Midfield,27,Union Saint-Gilloise,6.0,€77.30m
+Carlos Cuesta,Centre-Back,25,KRC Genk,6.0,€73.60m
+Gustaf Nilsson,Centre-Forward,27,Club Brugge KV,6.0,€136.85m
+Roko Simic,Centre-Forward,20,KV Kortrijk,6.0,€28.30m
+Ardon Jashari,Defensive Midfield,22,Club Brugge KV,6.0,€136.85m
+Sofiane Boufal,Left Winger,30,Union Saint-Gilloise,6.0,€77.30m
+Tolu Arokodare,Centre-Forward,23,KRC Genk,5.5,€73.60m
+Noah Sadiki,Central Midfield,19,Union Saint-Gilloise,5.0,€77.30m
+Luis Vázquez,Centre-Forward,23,RSC Anderlecht,5.0,€115.80m
+Théo Leoni,Central Midfield,24,RSC Anderlecht,5.0,€115.80m
+Mathias Delorge,Central Midfield,20,KAA Gent,5.0,€55.45m
+Lazare Amani,Central Midfield,26,Union Saint-Gilloise,5.0,€77.30m
+Hugo Siquet,Right-Back,22,Club Brugge KV,5.0,€136.85m
+Francis Amuzu,Left Winger,25,RSC Anderlecht,5.0,€115.80m
+Zinho Vanheusden,Centre-Back,25,KV Mechelen,5.0,€28.50m
+Thorgan Hazard,Left Winger,31,RSC Anderlecht,5.0,€115.80m
+Killian Sardella,Right-Back,22,RSC Anderlecht,5.0,€115.80m
+Jordan Torunarigha,Centre-Back,27,KAA Gent,5.0,€55.45m
+Anan Khalaili,Right Winger,20,Union Saint-Gilloise,5.0,€77.30m
+Matte Smets,Centre-Back,20,KRC Genk,5.0,€73.60m
+Killian Sardella,Right-Back,22,RSC Anderlecht,5.0,€115.80m
+Jordan Torunarigha,Centre-Back,27,KAA Gent,5.0,€55.45m
+Anan Khalaili,Right Winger,20,Union Saint-Gilloise,5.0,€77.30m
+Matte Smets,Centre-Back,20,KRC Genk,5.0,€73.60m
+Jorne Spileers,Centre-Back,19,Club Brugge KV,5.0,€136.85m
+Charles Vanhoutte,Defensive Midfield,25,Union Saint-Gilloise,4.5,€77.30m
+Jelle Bataille,Right-Back,25,Royal Antwerp FC,4.5,€60.70m
+Kyriani Sabbe,Right-Back,19,Club Brugge KV,4.5,€136.85m
+Zakaria El Ouahdi,Right-Back,22,KRC Genk,4.5,€73.60m
+Yira Sor,Centre-Forward,24,KRC Genk,4.0,€73.60m
+Jacob Ondrejka,Right Winger,22,Royal Antwerp FC,4.0,€60.70m
+Ludwig Augustinsson,Left-Back,30,RSC Anderlecht,4.0,€115.80m
+Griffin Yow,Right Winger,21,KVC Westerlo,4.0,€40.88m
+Momodou Lamin Sonko,Left Winger,19,KAA Gent,4.0,€55.45m
+Dennis Praet,Central Midfield,30,Royal Antwerp FC,4.0,€60.70m
+Jarne Steuckers,Right Winger,22,KRC Genk,4.0,€73.60m
+Konstantinos Karetsas,Attacking Midfield,16,KRC Genk,4.0,€73.60m
+Loïc Lapoussin,Left Midfield,28,Union Saint-Gilloise,4.0,€77.30m
+Emin Bayram,Centre-Back,21,KVC Westerlo,4.0,€40.88m
+Faitout Maouassa,Left-Back,26,Club Brugge KV,4.0,€136.85m
+Nathan Ngoy,Centre-Back,21,Standard Liège,3.5,€52.75m
+Casper Nielsen,Central Midfield,30,Club Brugge KV,3.5,€136.85m
+Ken Nkuba,Right Midfield,22,KRC Genk,3.5,€73.60m
+Patrik Hrosovsky,Central Midfield,32,KRC Genk,3.5,€73.60m
+Christopher Bonsu Baah,Right Winger,19,KRC Genk,3.5,€73.60m
+Mats Rits,Defensive Midfield,31,RSC Anderlecht,3.5,€115.80m
+Andi Zeqiri,Centre-Forward,25,Standard Liège,3.5,€52.75m
+Matisse Samoise,Right Midfield,22,KAA Gent,3.5,€55.45m
+Omri Gandelman,Central Midfield,24,KAA Gent,3.5,€55.45m
+Mujaid Sadick,Centre-Back,24,KRC Genk,3.5,€73.60m
+Marko Bulat,Defensive Midfield,22,Standard Liège,3.5,€52.75m
+Lucas Noubi,Centre-Back,19,Standard Liège,3.0,€52.75m
+Alexis Flips,Attacking Midfield,24,R Charleroi SC,3.0,€32.03m
+Kevin Rodríguez,Centre-Forward,24,Union Saint-Gilloise,3.0,€77.30m
+Billal Brahimi,Left Winger,24,Sint-Truidense VV,3.0,€23.00m
+Marlon Fossey,Right-Back,26,Standard Liège,3.0,€52.75m
+Brandon Mechele,Centre-Back,31,Club Brugge KV,3.0,€136.85m
+Bryan Reynolds,Right-Back,23,KVC Westerlo,3.0,€40.88m
+Sotiris Alexandropoulos,Central Midfield,22,Standard Liège,3.0,€52.75m
+Jairo Riedewald,Defensive Midfield,28,Royal Antwerp FC,3.0,€60.70m
+Matija Frigan,Centre-Forward,21,KVC Westerlo,3.0,€40.88m
+Mathias Rasmussen,Central Midfield,26,Union Saint-Gilloise,2.8,€77.30m
+Toby Alderweireld,Centre-Back,35,Royal Antwerp FC,2.8,€60.70m
+Andri Gudjohnsen,Centre-Forward,22,KAA Gent,2.7,€55.45m
+Ryotaro Ito,Central Midfield,26,Sint-Truidense VV,2.5,€23.00m
